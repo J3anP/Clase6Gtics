@@ -8,10 +8,8 @@ import org.example.clase6gtics.repository.EmployeesRepository;
 import org.example.clase6gtics.repository.JobsRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -37,7 +35,7 @@ public class EmployeeController {
     }
 
     @GetMapping(value = {"/newEmployee"})
-    public String crearEmployee(Model model){
+    public String crearEmployee(@ModelAttribute("employee") Employees employee, Model model){
         List<Employees> managerList = employeesRepository.findAll();
         List<Departments> departmentsList = departmentsRepository.findAll();
         List<Jobs> jobsList = jobsRepository.findAll();
@@ -48,6 +46,13 @@ public class EmployeeController {
     }
 
     @PostMapping("/guardarEmployee")
+    public String guardarNuevoEmployee(@ModelAttribute("employee") Employees employee, RedirectAttributes attr, Model model){
+
+        employeesRepository.save(employee);
+        return "redirect:/employees";
+    }
+
+    /*@PostMapping("/guardarEmployee")
     public String guardarNuevoEmployee(@RequestParam("firstName") String firstName,
                                             @RequestParam("lastName") String lastName,
                                             @RequestParam("email") String email,
@@ -64,5 +69,5 @@ public class EmployeeController {
        employeesRepository.crearEmployee(idEmployee,firstName,lastName, email, password,idcargo,salary, managerId, departmentId);
 
         return "redirect:/employees";
-    }
+    }*/
 }

@@ -5,9 +5,11 @@ import org.example.clase6gtics.entity.Employees;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface EmployeesRepository extends JpaRepository<Employees,Integer> {
     @Query(nativeQuery = true, value ="SELECT MAX(e.employee_id) FROM hr.employees e")
     Integer findLastEmployeeId();

@@ -24,6 +24,9 @@
             <br>
             <h2>Nuevo Empleado</h2>
             <hr/>
+            <div class="alert alert-success" role="alert" th:if="${msg != null}" th:text="${msg}">
+                A simple success alert—check it out!
+            </div>
             <form th:action="@{'/employees/guardarEmployee'}" method="post">
                 <div class="row">
                     <div class="col">
@@ -49,18 +52,18 @@
                     <div class="col">
                         <div class="mb-4">
                             <label for="password" class="form-label">Contraseña</label>
-                            <input type="text" class="form-control" name="password" id="password"/>
+                            <input type="password" class="form-control" name="password" id="password"/>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="mb-4">
-                            <label for="cargo" class="form-label">Cargo</label>
-                            <select class="form-select" name="idcargo" id="cargo">
-                                <option th:each="cargo : ${jobs}"
-                                        th:text="${cargo.jobtitle}"
-                                        th:value="${cargo.jobid}"></option>
+                            <label for="job" class="form-label">Cargo</label>
+                            <select class="form-select" name="job" id="job">
+                                <option th:each="job : ${jobs}"
+                                        th:text="${job.jobtitle}"
+                                        th:value="${job.jobid}"></option>
                             </select>
                         </div>
                     </div>
@@ -75,8 +78,8 @@
                 <div class="row">
                     <div class="col">
                         <div class="mb-4">
-                            <label for="idmanager" class="form-label">Jefe/Manager</label>
-                            <select class="form-select" name="idmanager" id="idmanager">
+                            <label for="manager" class="form-label">Jefe/Manager</label>
+                            <select class="form-select" name="manager" id="manager">
                                 <option th:each="manager : ${managerList}"
                                         th:text="${manager.firstName + ' ' + manager.lastName}"
                                         th:value="${manager.employee_id}"></option>
@@ -85,8 +88,8 @@
                     </div>
                     <div class="col">
                         <div class="mb-4">
-                            <label for="iddepartment" class="form-label">Departamento</label>
-                            <select class="form-select" name="iddepartment" id="iddepartment">
+                            <label for="department" class="form-label">Departamento</label>
+                            <select class="form-select" name="department" id="department">
                                 <option th:each="department : ${departmentsList}"
                                         th:text="${department.departmentname}"
                                         th:value="${department.id}"></option>
