@@ -1,5 +1,6 @@
 package org.example.clase6gtics.controller;
 
+import jakarta.validation.Valid;
 import org.example.clase6gtics.entity.Departments;
 import org.example.clase6gtics.entity.Employees;
 import org.example.clase6gtics.entity.Jobs;
@@ -8,9 +9,11 @@ import org.example.clase6gtics.repository.EmployeesRepository;
 import org.example.clase6gtics.repository.JobsRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.naming.Binding;
 import java.util.List;
 
 @Controller
@@ -46,10 +49,19 @@ public class EmployeeController {
     }
 
     @PostMapping("/guardarEmployee")
-    public String guardarNuevoEmployee(@ModelAttribute("employee") Employees employee, RedirectAttributes attr, Model model){
-
-        employeesRepository.save(employee);
-        return "redirect:/employees";
+    public String guardarNuevoEmployee(@ModelAttribute("employee") @Valid Employees employee, BindingResult bindingResult, RedirectAttributes attr, Model model){
+        if(bindingResult.hasErrors()){
+            List<Departments> departmentsList = departmentsRepository.findAll();
+            List<Employees> managerList = employeesRepository.findAll();
+            List<Jobs> jobsList = jobsRepository.findAll();
+            model.addAttribute("departmentsList", departmentsList);
+            model.addAttribute("managerList", managerList);
+            model.addAttribute("jobs", jobsList);
+            return "employee/new";
+        }else{
+            employeesRepository.save(employee);
+            return "redirect:/employees";
+        }
     }
 
     /*@PostMapping("/guardarEmployee")

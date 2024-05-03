@@ -27,18 +27,26 @@
             <div class="alert alert-success" role="alert" th:if="${msg != null}" th:text="${msg}">
                 A simple success alert—check it out!
             </div>
-            <form th:action="@{'/employees/guardarEmployee'}" method="post">
+            <form th:action="@{'/employees/guardarEmployee'}" method="post" th:object="${employee}">
                 <div class="row">
                     <div class="col">
                         <div class="mb-4">
-                            <label for="firstName" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="firstName" id="firstName"/>
+                            <label class="form-label">Nombre</label>
+                            <input type="text" th:field="*{firstName}"  name="firstName"  class="form-control" th:classappend="${#fields.hasErrors('firstName')?'is-invalid':''}"/>
+                            <div  class="invalid-feedback"
+                                th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                                No puede estar vacío
+                            </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="mb-4">
-                            <label for="lastName" class="form-label">Apellido</label>
-                            <input type="text" class="form-control" name="lastName" id="lastName"/>
+                            <label class="form-label">Apellido</label>
+                            <input type="text" th:field="*{lastName}" name="lastName" class="form-control" th:classappend="${#fields.hasErrors('lastName')?'is-invalid':''}"/>
+                            <div  class="invalid-feedback"
+                                 th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+                                No puede estar vacío
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -51,8 +59,12 @@
                     </div>
                     <div class="col">
                         <div class="mb-4">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" name="password" id="password"/>
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" th:field="*{password}" class="form-control" name="password" th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"/>
+                            <div  class="invalid-feedback"
+                                 th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                                No puede estar vacío
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -69,8 +81,12 @@
                     </div>
                     <div class="col">
                         <div class="mb-4">
-                            <label for="salary" class="form-label">Sueldo</label>
-                            <input type="text" class="form-control" name="salary" id="salary"/>
+                            <label class="form-label">Sueldo</label>
+                            <input type="text" th:field="*{salary}" class="form-control" name="salary" th:classappend="${#fields.hasErrors('salary')?'is-invalid':''}"/>
+                            <div  class="invalid-feedback"
+                                 th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">
+                                No puede estar vacío
+                            </div>
                         </div>
                     </div>
                 </div>
