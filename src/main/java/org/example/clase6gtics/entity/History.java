@@ -1,8 +1,14 @@
 package org.example.clase6gtics.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+
 import java.sql.Date;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "job_history")
 public class History {

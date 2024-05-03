@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+   <style>
+       .form-select {
+           border: 1px solid #ced4da;
+           padding: .375rem .75rem;
+           border-radius: .25rem;
+           font-size: 1rem;
+       }
+   </style>
+    <title>Lista de Empleados</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="row mb-4">
+        <div class="col-md-6 offset-md-3">
+            <br>
+            <h2>Nuevo Empleado</h2>
+            <hr/>
+            <form th:action="@{'/employees/guardarEmployee'}" method="post">
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-4">
+                            <label for="firstName" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="firstName" id="firstName"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-4">
+                            <label for="lastName" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" name="lastName" id="lastName"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-4">
+                            <label for="email" class="form-label">Correo</label>
+                            <input type="text" class="form-control" name="email" id="email"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-4">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="text" class="form-control" name="password" id="password"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-4">
+                            <label for="cargo" class="form-label">Cargo</label>
+                            <select class="form-select" name="idcargo" id="cargo">
+                                <option th:each="cargo : ${jobs}"
+                                        th:text="${cargo.jobtitle}"
+                                        th:value="${cargo.jobid}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-4">
+                            <label for="salary" class="form-label">Sueldo</label>
+                            <input type="text" class="form-control" name="salary" id="salary"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-4">
+                            <label for="idmanager" class="form-label">Jefe/Manager</label>
+                            <select class="form-select" name="idmanager" id="idmanager">
+                                <option th:each="manager : ${managerList}"
+                                        th:text="${manager.firstName + ' ' + manager.lastName}"
+                                        th:value="${manager.employee_id}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-4">
+                            <label for="iddepartment" class="form-label">Departamento</label>
+                            <select class="form-select" name="iddepartment" id="iddepartment">
+                                <option th:each="department : ${departmentsList}"
+                                        th:text="${department.departmentname}"
+                                        th:value="${department.id}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <a th:href="@{'/employees'}" class="btn btn-danger">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,7 +1,12 @@
 package org.example.clase6gtics.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+
+@Getter
+@Setter
 @Entity
 @Table(name = "countries")
 public class Countries {
