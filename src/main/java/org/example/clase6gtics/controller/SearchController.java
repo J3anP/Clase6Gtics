@@ -25,6 +25,7 @@ public class SearchController {
     }
     @GetMapping(value={"/listaEmployeeMayorSalario"})
     public String listarEmployeeMayorSalario(Model model){
+        Lis
         model.addAttribute("employees", historyRepository.listaMayor);
     }
 }
