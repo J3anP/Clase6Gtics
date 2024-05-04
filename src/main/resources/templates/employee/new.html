@@ -27,7 +27,6 @@
             <div class="alert alert-success" role="alert" th:if="${msg != null}" th:text="${msg}">
                 A simple success alert—check it out!
             </div>
-            <div><p th:text="${employee.getEmployee_id()}"></p></div>
             <form th:action="@{'/employees/guardarEmployee'}" method="post" th:object="${employee}">
                 <div class="row">
                     <div class="col">
@@ -43,7 +42,7 @@
                     <div class="col">
                         <div class="mb-4">
                             <label class="form-label">Apellido</label>
-                            <input type="text" th:field="*{lastName}" name="lastName" class="form-control" th:classappend="${#fields.hasErrors('lastName')?'is-invalid':''}"/>
+                            <input type="text" th:field="*{lastName}" name="lastName"  class="form-control" th:classappend="${#fields.hasErrors('lastName')?'is-invalid':''}"/>
                             <div  class="invalid-feedback"
                                  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
                                 No puede estar vacío
