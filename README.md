@@ -6,4 +6,5 @@ Milene La Rosa Castro - 20206456
 Piero Huanca - 20200814
 David Alonso - 20210850
 Alexander Daniel Abrisqueta Zevallos - 20191641
+Gerardo Gutierrez-20206089
 Jorge Coronado- 20181526
