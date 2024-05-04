@@ -18,11 +18,11 @@ public class Employees {
     private Integer employee_id;
 
     @Column(name = "first_name")
-    @NotBlank
+    @NotBlank(message = "No debe ser vacío")
     private String firstName;
 
     @Column(name = "last_name")
-    @NotBlank
+    @NotBlank(message = "No debe ser vacío")
     private String lastName;
     @Column(name = "email")
     private String email;
