@@ -1,6 +1,7 @@
 package org.example.clase6gtics.repository;
 
 import jakarta.transaction.Transactional;
+import org.example.clase6gtics.dto.EmployeeMaxSalaryDTO;
 import org.example.clase6gtics.entity.Employees;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -25,4 +26,8 @@ public interface EmployeesRepository extends JpaRepository<Employees,Integer> {
     @Query(nativeQuery = true, value = "INSERT INTO hr.employees(employee_id, first_name, last_name, email, password, job_id, salary, manager_id, department_id)\n" +
             "VALUES (?1, ?2, ?3, ?4,?5, ?6, ?7, ?8, ?9)")
     void crearEmployee(int id, String name, String lastname, String email, String password, String jobid, Float salary,int managerid, int departmentid);
+
+
+    @Query(nativeQuery = true, value = "SELECT e.first_name as Nombre, e.last_name as Apellido, DATE_FORMAT(jh.start_date,\"%d-%m-%Y\") as FechaInicio, DATE_FORMAT(jh.end_date,\"%d-%m-%Y\") as FechaFin, j.job_title as Puesto FROM job_history jh LEFT JOIN jobs j ON jh.job_id = j.job_id LEFT JOIN employees e ON e.employee_id = jh.employee_id ORDER BY e.salary DESC")
+    List<EmployeeMaxSalaryDTO> listadoEmpleadoSalario();
 }

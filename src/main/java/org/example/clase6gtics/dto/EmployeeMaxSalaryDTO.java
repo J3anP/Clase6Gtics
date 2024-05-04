@@ -1,6 +1,6 @@
 package org.example.clase6gtics.dto;
 
-interface EmployeeMaxSalaryDTO {
+public interface EmployeeMaxSalaryDTO {
     public String getNombre();
     public String getApellido();
     public String getFechaInicio();
