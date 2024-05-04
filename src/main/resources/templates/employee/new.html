@@ -22,11 +22,12 @@
     <div class="row mb-4">
         <div class="col-md-6 offset-md-3">
             <br>
-            <h2>Nuevo Empleado</h2>
+            <h2 th:text="${employee.getEmployee_id()==null?'Nuevo Empleado':'Editar Empleado'}"></h2>
             <hr/>
             <div class="alert alert-success" role="alert" th:if="${msg != null}" th:text="${msg}">
                 A simple success alert—check it out!
             </div>
+            <div><p th:text="${employee.getEmployee_id()}"></p></div>
             <form th:action="@{'/employees/guardarEmployee'}" method="post" th:object="${employee}">
                 <div class="row">
                     <div class="col">
@@ -115,7 +116,7 @@
                 </div>
 
                 <a th:href="@{'/employees'}" class="btn btn-danger">Cancelar</a>
-                <button type="submit" class="btn btn-primary">Registrar</button>
+                <button type="submit" class="btn btn-primary" th:text="${employee.getEmployee_id()==null?'Registrar':'Actualizar'}"></button>
             </form>
         </div>
     </div>

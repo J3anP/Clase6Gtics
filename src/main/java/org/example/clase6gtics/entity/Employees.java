@@ -28,7 +28,7 @@ public class Employees {
     private String email;
 
     @Column(name = "password")
-    @Size(max=8, message = "Debe tener un mínimo de 8 carácteres")
+    @Size(min=8, message = "Debe tener un mínimo de 8 carácteres")
     @NotBlank(message = "No debe ser vacío o blanco")
     private String password;
 
