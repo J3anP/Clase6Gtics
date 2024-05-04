@@ -61,7 +61,7 @@
                     <div class="col">
                         <div class="mb-4">
                             <label class="form-label">Contraseña</label>
-                            <input type="password" th:field="*{password}" class="form-control" th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"/>
+                            <input type="text" th:field="*{password}" class="form-control" th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"/>
                             <div  class="invalid-feedback"
                                  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
                                 No puede estar vacío
