@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.naming.Binding;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/employees")
@@ -48,6 +51,26 @@ public class EmployeeController {
         return "employee/new";
     }
 
+    @GetMapping(value = {"/edit"})
+    public String editarEmployee(@ModelAttribute("employee") Employees employee, Model model, @RequestParam("id") int id){
+        Optional<Employees> optEmployee = employeesRepository.findById(id);
+
+        if(optEmployee.isPresent()){
+            List<Employees> managerList = employeesRepository.findAll();
+            List<Departments> departmentsList = departmentsRepository.findAll();
+            List<Jobs> jobsList = jobsRepository.findAll();
+            employee = optEmployee.get();
+            model.addAttribute("employee",employee);
+            model.addAttribute("departmentsList", departmentsList);
+            model.addAttribute("managerList", managerList);
+            model.addAttribute("jobs", jobsList);
+            return "employee/new";
+        }else{
+            return "redirect:/employees";
+        }
+
+    }
+
     @PostMapping("/guardarEmployee")
     public String guardarNuevoEmployee(@ModelAttribute("employee") @Valid Employees employee, BindingResult bindingResult, RedirectAttributes attr, Model model){
         if(bindingResult.hasErrors()){
@@ -59,6 +82,7 @@ public class EmployeeController {
             model.addAttribute("jobs", jobsList);
             return "employee/new";
         }else{
+            employee.setHireDate(Date.from(Instant.now()));
             employeesRepository.save(employee);
             return "redirect:/employees";
         }
