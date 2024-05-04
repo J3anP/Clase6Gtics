@@ -54,14 +54,14 @@
                 <div class="row">
                     <div class="col">
                         <div class="mb-4">
-                            <label for="email" class="form-label">Correo</label>
-                            <input type="text" class="form-control" name="email" id="email"/>
+                            <label class="form-label">Correo</label>
+                            <input type="text" class="form-control" th:field="*{email}"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="mb-4">
                             <label class="form-label">Contraseña</label>
-                            <input type="password" th:field="*{password}" class="form-control" name="password" th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"/>
+                            <input type="password" th:field="*{password}" class="form-control" th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"/>
                             <div  class="invalid-feedback"
                                  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
                                 No puede estar vacío
