@@ -21,8 +21,10 @@ public class SearchController {
 
     @GetMapping(value = {""})
     public String listarJobHistory(Model model){
-        /*List<Employees> empleadosList = historyRepository.;*/
-        /*model.addAttribute("listaEmployee", empleadosList);*/
-        return "employee/lista";
+        return "Search/indice";
+    }
+    @GetMapping(value={"/listaEmployeeMayorSalario"})
+    public String listarEmployeeMayorSalario(Model model){
+        model.addAttribute("employees", historyRepository.listaMayor);
     }
 }
