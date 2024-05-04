@@ -82,6 +82,7 @@ public class EmployeeController {
             model.addAttribute("jobs", jobsList);
             return "employee/new";
         }else{
+            attr.addFlashAttribute("msg",employee.getEmployee_id()==null?"Empleado creado exitosamente":"Empleado editado exitosamente");
             employee.setHireDate(Date.from(Instant.now()));
             employeesRepository.save(employee);
             return "redirect:/employees";

@@ -28,6 +28,7 @@
                 A simple success alert—check it out!
             </div>
             <form th:action="@{'/employees/guardarEmployee'}" method="post" th:object="${employee}">
+                <input th:field="*{employee_id}" hidden>
                 <div class="row">
                     <div class="col">
                         <div class="mb-4">
