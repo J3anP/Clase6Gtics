@@ -26,7 +26,7 @@ public class SearchController {
     public String listarJobHistory(Model model){
         return "Search/indice";
     }
-    @GetMapping(value={"/listaEmployeeMayorSalario"})
+    @GetMapping(value={"/Salario"})
     public String listarEmployeeMayorSalario(Model model){
         model.addAttribute("employees", employeesRepository.listadoEmpleadoSalario());
         return "Search/lista2";

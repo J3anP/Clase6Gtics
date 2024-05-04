@@ -12,10 +12,9 @@
 <div class="container">
     <h1>Empleados con Mayor Salario en la Empresa</h1>
     <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-
-            <button type="button" class="btn btn-outline-info" type="submit">Buscar</button>
+        <form class="form-inline" >
+            <input class="form-control mr-sm-2" type="search" placeholder="Salario a buscar" aria-label="Salario a buscar">
+            <button class="btn btn-outline-info" type="submit">Buscar</button>
             <button type="button" class="btn btn-outline-danger">Limpiar</button>
             <button class="btn btn-primary" type="submit">Regresar</button>
         </form>
@@ -32,12 +31,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>ola</td>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.getNombre()}"></td>
+            <td th:text="${employee.getApellido()}"></td>
+            <td th:text="${employee.getFechaInicio}"></td>
+            <td th:text="${employee.getFechaFin()}"></td>
+            <td th:text="${employee.getPuesto()}"></td>
         </tr>
         </tbody>
     </table>
